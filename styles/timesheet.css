@@ -1,0 +1,19 @@
+html {
+	width:600px;
+}
+
+.page {
+	padding: 10px;
+}
+
+.hour {
+	width:50px;
+}
+
+.date {
+	width:70px;
+}
+
+.description {
+	width: 70px !important;
+}

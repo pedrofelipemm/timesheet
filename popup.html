@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="timesheet">
+    <head>
+        <title>Timesheet</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<script type="text/javascript" src="scripts/libs/jquery-1.10.1.min.js" ></script>
+        <script type="text/javascript" src="scripts/libs/angular.min.js"></script>
+        <script type="text/javascript" src="scripts/libs/parse-1.2.8.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="scripts/conf.js"></script>
+		<script type="text/javascript" src="scripts/app.js"></script>
+		<script type="text/javascript" src="scripts/service.js"></script>
+		<script type="text/javascript" src="scripts/controller.js"></script>
+
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+		<link rel="stylesheet" href="styles/timesheet.css">
+		
+    </head>
+    <body>
+		<div class="page" id="addTimes" ng-controller="TimeController">
+			<h1>Timesheet</h1>
+			<hr>
+		    <form>
+		    	<table>
+			    	<thead>
+			    		<td>Data</td>
+			    		<td>Entrada</td>
+			    		<td>Saida</td>
+			    		<td>Entrada</td>
+			    		<td>Saida</td>
+			    		<td>Descricao</td>
+			    	</thead>
+			    	<tbody>
+			   			<tr class="line" ng-repeat="time in times">
+			   			
+							<td>
+				   				<input class="date" type="text" ng-model="time.date" placeholder="dd/mm/aaaa" />
+				   			</td>
+				   			<td>
+								<input class="hour" type="text" ng-model="time.entryAM" placeholder="hh:mm" />
+							</td>
+							<td>
+								<input class="hour" type="text" ng-model="time.outAM"   placeholder="hh:mm" />
+							</td>
+							<td>
+								<input class="hour" type="text" ng-model="time.entryPM" placeholder="hh:mm" />
+							</td>
+							<td>
+								<input class="hour" type="text" ng-model="time.outPM"   placeholder="hh:mm" />
+							</td>
+							<td>
+								<textarea ng-model="time.description" cols="30" rows="5"></textarea>
+							</td>
+							<td>
+								<button ng-click="save(time)">Save</button>
+							</td>
+						</tr>
+					</tbody>
+		   		</table>
+						
+						
+		   			
+		   		
+		   		<button ng-click="addLine()">Add</button>
+		   	</form>
+	    </div>
+    </body>
+</html>
+

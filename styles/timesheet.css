@@ -2,6 +2,12 @@
 	padding: 10px;
 }
 
+textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .hour {
 	width:50px;
 }

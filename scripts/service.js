@@ -1,12 +1,17 @@
 
+app.factory('AuthService', function() {
+
+});
+
 app.factory('TimeService', function() {
 	var Time = Parse.Object.extend("Time");
 
 	return {
-		save:function(time, opt) {
-			
+		saveOrUpdate:function(time, opt) {
+
 			var newTime = new Time();
 
+			newTime.id = time.id || null;
 			newTime.set('date', time.date);
 			newTime.set('entryAM', time.entryAM);
 			newTime.set('outAM', time.outAM);
@@ -16,10 +21,25 @@ app.factory('TimeService', function() {
 
 			newTime.save(null, {
 				success:function(time){
-					if(opt.success) opt.success(time);
+					if(opt && opt.success) opt.success(time);
 				},
 				error: function(time, err){
-					if(opt.error) opt.error(err);
+					if(opt && opt.error) opt.error(err);
+				}
+			});
+		},
+
+		delete: function(time, opt) {
+			var deleteTime = new Time();
+
+			deleteTime.id = time.id;
+
+			deleteTime.destroy({
+				success:function(time){
+					if(opt && opt.success) opt.success(time);
+				},
+				error: function(time, err){
+					if(opt && opt.error) opt.error(err);
 				}
 			});
 		},
@@ -32,7 +52,9 @@ app.factory('TimeService', function() {
 				error: function(times, err){
 					if(opt.error) opt.error(err);
 				}
-			})	
+			})
 		}
 	}
 });
+
+

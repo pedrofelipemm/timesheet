@@ -1,0 +1,59 @@
+<div class="page" id="addTimes">
+    <h1>Timesheet</h1>
+    <hr>
+    <form>
+        <table>
+            <thead>
+                <td>Data</td>
+                <td>Entrada</td>
+                <td>Saida</td>
+                <td>Entrada</td>
+                <td>Saida</td>
+            </thead>
+            <tbody>
+                <tr class="line">
+
+                    <td>
+                        <input class="date" type="text" ng-model="time.date" placeholder="dd/mm/aaaa" />
+                    </td>
+                    <td>
+                        <input class="hour" type="text" ng-model="time.entryAM" placeholder="hh:mm" />
+                    </td>
+                    <td>
+                        <input class="hour" type="text" ng-model="time.outAM"   placeholder="hh:mm" />
+                    </td>
+                    <td>
+                        <input class="hour" type="text" ng-model="time.entryPM" placeholder="hh:mm" />
+                    </td>
+                    <td>
+                        <input class="hour" type="text" ng-model="time.outPM"   placeholder="hh:mm" />
+                    </td>
+                    <td>
+                        <button ng-click="save(time)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <textarea ng-model="time.description" cols="50" rows="3"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+
+            <tr ng-repeat="time in times">
+
+                <td>{{time.date}}</td>
+                <td>{{time.entryAM}}</td>
+                <td>{{time.outAM}}</td>
+                <td>{{time.entryPM}}</td>
+                <td>{{time.outPM}}</td>
+                <td>{{time.description}}</td>
+                <td><button ng-click="delete(time, $index)">Delete</button></td>
+
+            </tr>
+
+        </table>
+    </form>
+</div>

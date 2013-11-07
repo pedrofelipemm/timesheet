@@ -19,6 +19,8 @@ app.factory('TimeService', function() {
 			newTime.set('outPM', time.outPM);
 			newTime.set('description', time.description);
 
+			newTime.set('user', time.user)
+
 			newTime.save(null, {
 				success:function(time){
 					if(opt && opt.success) opt.success(time);
@@ -43,8 +45,10 @@ app.factory('TimeService', function() {
 				}
 			});
 		},
+
 		findAll:function(opt) {
 			var query = new Parse.Query(Time);
+			//query.equalTo('user', Parse.User.current());
 			query.find({
 				success:function(times){
 					if(opt.success) opt.success(times);

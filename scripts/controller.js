@@ -1,6 +1,50 @@
+app.controller('LoginController', function($scope, $location) {
 
+	$scope.user = {name:"",
+				   email:"",
+				   password:""};
 
-app.controller('TimeController', function($scope, TimeService) {
+	$scope.login = function(){
+		var username = $scope.user.name;
+		var password = $scope.user.password;
+
+		Parse.User.logIn(username, password, {
+			success:function(user) {
+				$location.path('/');
+				$scope.$apply();
+			},
+			error:function(user, error) {
+				$scope.error = {messages:[error.message]};
+				$scope.$apply();
+			}
+		});
+	};
+
+	$scope.sign_up = function() {
+
+		var username = $scope.user.name;
+		var password = $scope.user.password;
+
+		var attr = {
+			email:$scope.user.email
+		};
+
+		Parse.User.signUp(username, password, attr, {
+			success:function(user) {
+				$location.path('/');
+				$scope.$apply();
+			},
+			error:function(user, error) {
+				$scope.error = {messages:[error.message]};
+				$scope.apply();
+			}
+		});
+	};
+});
+
+app.controller('TimeController', function($scope, $location, TimeService) {
+
+	if(!Parse.User.current()) $location.path('/login');
 
 	function TimeLine(time) {
 		if(!time) time = {attributes:{}}
@@ -17,6 +61,9 @@ app.controller('TimeController', function($scope, TimeService) {
 	$scope.times = []
 
 	$scope.save = function(time) {
+
+		time.user = Parse.User.current();
+
 		TimeService.saveOrUpdate(time, {
 			success:function(newTime) {
 				clearForm();
@@ -33,6 +80,11 @@ app.controller('TimeController', function($scope, TimeService) {
 				$scope.$apply();
 			}
 		});
+	}
+
+	$scope.logout = function() {
+		Parse.User.logOut();
+		$location.path("/login");
 	}
 
 	function loadTimes() {

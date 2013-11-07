@@ -1,0 +1,27 @@
+<div class="page" id="login-page" >
+    <h4>Sign Up</h4>
+
+    <form ng-submit="sign_up()">
+    <div class="form-group">
+        <label>User Name:</label>
+        <input type="text" class="form-control"
+                ng-model="user.name" placeholder="User Name" />
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="text" class="form-control"
+                ng-model="user.email" placeholder="Email" />
+    </div>
+
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control"
+               ng-model="user.password" placeholder="Password" />
+    </div>
+
+    <input type="submit" id="submit" class="btn btn-primary" value="Sign Up" />
+    <a href="#/login">Sign In</a>
+
+    </form>
+</div>

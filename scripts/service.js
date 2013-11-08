@@ -49,6 +49,7 @@ app.factory('TimeService', function() {
 		findAll:function(opt) {
 			var query = new Parse.Query(Time);
 			query.equalTo('user', Parse.User.current());
+			query.ascending('createdAt');
 			query.find({
 				success:function(times){
 					if(opt.success) opt.success(times);

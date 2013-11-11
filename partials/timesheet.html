@@ -1,7 +1,8 @@
 <div class="page" id="add-times">
-    <a href="#" ng-click="logout()">Logout</a>
-    <h1>Timesheet</h1>
-    <hr>
+   
+    <h1 class="pull-left">Timesheet</h1>
+    <a href="#" class="pull-right" ng-click="logout()">Logout</a>
+   
     <form>
         <table>
             <thead>
@@ -29,13 +30,13 @@
                     <td>
                         <input class="hour" type="text" ng-model="time.outPM"   placeholder="hh:mm" />
                     </td>
-                    <td>
-                        <button ng-click="save(time)">Save</button>
-                    </td>
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <textarea ng-model="time.description" cols="50" rows="3"></textarea>
+                        <textarea class="form-control" ng-model="time.description" cols="50" rows="3"></textarea>
+                    </td>
+                    <td>
+                        <button class="btn" ng-click="save(time)">Save</button>
                     </td>
                 </tr>
             </tbody>
@@ -51,7 +52,10 @@
                 <td>{{time.entryPM}}</td>
                 <td>{{time.outPM}}</td>
                 <td>{{time.description}}</td>
-                <td><button ng-click="delete(time, $index)">Delete</button></td>
+                <td>
+                    <button class="btn" ng-click="delete(time, $index)">Delete</button>
+                    <button class="btn" ng-click="edit(time, $index)">Edit</button>
+                </td>
 
             </tr>
 

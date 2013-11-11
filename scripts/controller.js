@@ -67,10 +67,16 @@ app.controller('TimeController', function($scope, $location, TimeService) {
 		TimeService.saveOrUpdate(time, {
 			success:function(newTime) {
 				clearForm();
-				$scope.times.push(new TimeLine(newTime));
+				
+				if(!time.id) $scope.times.unshift(new TimeLine(newTime));
+				
 				$scope.$apply();
 			}
 		});
+	}
+
+	$scope.edit = function(time, index) {
+		$scope.time = time;	
 	}
 
 	$scope.delete = function(time, index) {

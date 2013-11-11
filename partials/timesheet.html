@@ -44,7 +44,7 @@
             </tbody>
         </table>
 
-        <table class="table">
+        <table class="table table-striped">
 
             <tr ng-repeat="time in times">
 
@@ -55,8 +55,8 @@
                 <td>{{time.outPM}}</td>
                 <td>{{time.description}}</td>
                 <td>
-                    <button class="btn" ng-click="delete(time, $index)">Delete</button>
                     <button class="btn" ng-click="edit(time, $index)">Edit</button>
+                    <button class="btn btn-danger" ng-click="delete(time, $index)">Delete</button>
                 </td>
 
             </tr>

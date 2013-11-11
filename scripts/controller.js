@@ -44,8 +44,6 @@ app.controller('LoginController', function($scope, $location) {
 
 app.controller('TimeController', function($scope, $location, TimeService) {
 
-	if(!Parse.User.current()) $location.path('/login');
-
 	function TimeLine(time) {
 		if(!time) time = {attributes:{}}
 
@@ -59,6 +57,16 @@ app.controller('TimeController', function($scope, $location, TimeService) {
 	}
 
 	$scope.times = []
+
+	$scope.init = function() {
+		
+		if(!Parse.User.current()) 
+			$location.path('/login');
+
+		$scope.user = Parse.User.current().attributes;
+		
+		loadTimes();
+	}
 
 	$scope.save = function(time) {
 
@@ -109,5 +117,5 @@ app.controller('TimeController', function($scope, $location, TimeService) {
 		$scope.time = new TimeLine();
 	}
 
-	loadTimes();
+	$scope.init();
 });

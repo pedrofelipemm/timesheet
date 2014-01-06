@@ -50,13 +50,14 @@ app.controller('TimeController', function($scope, $location, TimeService) {
 		this.id   = time.id || null;
 		this.date = time.attributes.date || "";
 		this.entryAM = time.attributes.entryAM || "";
-		this.outAM = time.attributes.outAM || "";
+		this.outAM   = time.attributes.outAM || "";
 		this.entryPM = time.attributes.entryPM || "";
-		this.outPM = time.attributes.outPM || "";
+		this.outPM   = time.attributes.outPM || "";
 		this.description = time.attributes.description || "";
+		this.day = time.attributes.day || new Date();
 	}
 
-	$scope.times = []
+	$scope.times = [];
 
 	$scope.init = function() {
 		
@@ -68,8 +69,10 @@ app.controller('TimeController', function($scope, $location, TimeService) {
 		loadTimes();
 	}
 
-	$scope.save = function(time) {
-
+	$scope.save = function() {
+		
+		var time = $scope.time;
+		
 		time.user = Parse.User.current();
 
 		TimeService.saveOrUpdate(time, {
@@ -110,7 +113,7 @@ app.controller('TimeController', function($scope, $location, TimeService) {
 
 				$scope.$apply();
 			}
-		})
+		});
 	}
 
 	function clearForm() {

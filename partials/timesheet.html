@@ -5,7 +5,7 @@
         <span>Bem vindo {{user.username}}!</span>
         <a href="#"  ng-click="logout()">Logout</a>
     </div>
-    <form>
+    <form ng-submit="save()">
         <table>
             <thead>
                 <td>Data</td>
@@ -17,20 +17,20 @@
             <tbody>
                 <tr class="line">
 
-                    <td>
-                        <input class="date" type="text" ng-model="time.date" placeholder="dd/mm/aaaa" />
+                    <td class="input-group">
+                        <input class="form-control date" type="text" ng-model="time.date"  placeholder="dd/mm/aaaa" required />
                     </td>
-                    <td>
-                        <input class="hour" type="text" ng-model="time.entryAM" placeholder="hh:mm" />
+                    <td class="input-group">
+                        <input class="form-control hour" type="text" ng-model="time.entryAM" placeholder="hh:mm" />
                     </td>
-                    <td>
-                        <input class="hour" type="text" ng-model="time.outAM"   placeholder="hh:mm" />
+                    <td class="input-group">
+                        <input class="form-control hour" type="text" ng-model="time.outAM"   placeholder="hh:mm" />
                     </td>
-                    <td>
-                        <input class="hour" type="text" ng-model="time.entryPM" placeholder="hh:mm" />
+                    <td class="input-group">
+                        <input class="form-control hour" type="text" ng-model="time.entryPM" placeholder="hh:mm" />
                     </td>
-                    <td>
-                        <input class="hour" type="text" ng-model="time.outPM"   placeholder="hh:mm" />
+                    <td class="input-group">
+                        <input class="form-control hour" type="text" ng-model="time.outPM" placeholder="hh:mm" />
                     </td>
                 </tr>
                 <tr>
@@ -38,7 +38,7 @@
                         <textarea class="form-control" ng-model="time.description" cols="50" rows="3"></textarea>
                     </td>
                     <td>
-                        <button class="btn" ng-click="save(time)">Save</button>
+                        <input type="submit" class="btn btn-default" value="Save">
                     </td>
                 </tr>
             </tbody>
@@ -48,15 +48,18 @@
 
             <tr ng-repeat="time in times">
 
-                <td>{{time.date}}</td>
+                <td>{{time.day | date:"dd/MM/yyyy" }}</td>
                 <td>{{time.entryAM}}</td>
                 <td>{{time.outAM}}</td>
                 <td>{{time.entryPM}}</td>
                 <td>{{time.outPM}}</td>
                 <td>{{time.description}}</td>
                 <td>
-                    <button class="btn" ng-click="edit(time, $index)">Edit</button>
-                    <button class="btn btn-danger" ng-click="delete(time, $index)">Delete</button>
+                    <button  type="button" class="btn btn-default" ng-click="edit(time, $index)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="delete(time, $index)">
+                        <span class="glyphicon glyphicon-trash"></span></button>
                 </td>
 
             </tr>

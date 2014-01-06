@@ -10,15 +10,20 @@ app.factory('TimeService', function() {
 		saveOrUpdate:function(time, opt) {
 
 			var newTime = new Time();
-
+			
 			newTime.id = time.id || null;
-			newTime.set('date', time.date);
+			
 			newTime.set('entryAM', time.entryAM);
 			newTime.set('outAM', time.outAM);
 			newTime.set('entryPM', time.entryPM);
 			newTime.set('outPM', time.outPM);
 			newTime.set('description', time.description);
-
+			
+			if(time.date){
+				var date = time.date.split("/");
+				newTime.set('day', new Date(date[1]+"/"+date[0]+"/"+date[2]));
+			} 
+			
 			newTime.set('user', time.user)
 
 			newTime.save(null, {
@@ -49,7 +54,7 @@ app.factory('TimeService', function() {
 		findAll:function(opt) {
 			var query = new Parse.Query(Time);
 			query.equalTo('user', Parse.User.current());
-			query.descending('createdAt');
+			query.descending('day');
 			query.find({
 				success:function(times){
 					if(opt.success) opt.success(times);
